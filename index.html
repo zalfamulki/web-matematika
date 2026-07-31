@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplikasi web belajar matematika interaktif untuk kelas 6 SD berfokus pada materi pecahan, pecahan campuran, perbandingan, skala dan rasio.">
+  <title>Matematika Seru Kelas 6 - Pecahan, Campuran & Rasio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand" onclick="navigateToTab('home')">
+        <span class="brand-logo">📐</span>
+        <span class="brand-title">MathFun Kelas 6</span>
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active">🏠 Beranda</a></li>
+          <li><a href="#materi" class="nav-link">📚 Belajar Materi</a></li>
+          <li><a href="#kuis" class="nav-link">✏️ Kuis Seru</a></li>
+          <li><a href="#tugas" class="nav-link">🎯 Tugas Interaktif</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN APPLICATION SECTIONS -->
+  <main>
+    
+    <!-- 1. HOME SECTION -->
+    <section id="home" class="page-section active">
+      <div class="card hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Halo, Sobat Matematika! 👋</h1>
+          <p class="hero-subtitle">Mari belajar tentang Pecahan, Pecahan Campuran, dan Rasio dengan cara yang super seru dan mudah dipahami. Siap jadi juara kelas?</p>
+          <button class="btn btn-primary" onclick="navigateToTab('materi')">Mulai Belajar Sekarang! 🚀</button>
+        </div>
+        <div class="hero-img">
+          <span>🍕</span>
+        </div>
+      </div>
+
+      <h2 style="margin: 40px 0 20px; text-align: center; font-size: 2rem;">Pilih Aktivitas Belajarmu! 🌟</h2>
+      
+      <div class="menu-grid">
+        <!-- Card 1: Materi -->
+        <div class="card menu-card">
+          <span class="menu-icon">📖</span>
+          <h3>Belajar Materi</h3>
+          <p style="color: var(--text-muted); margin: 10px 0 20px;">Pelajari konsep dasar pecahan, pecahan campuran, perbandingan, dan rasio lengkap dengan gambar visual.</p>
+          <button class="btn btn-primary" onclick="navigateToTab('materi')">Buka Buku 📚</button>
+        </div>
+
+        <!-- Card 2: Kuis -->
+        <div class="card menu-card color-pink">
+          <span class="menu-icon">⚡</span>
+          <h3>Kuis Pilihan Ganda</h3>
+          <p style="color: var(--text-muted); margin: 10px 0 20px;">Uji pemahamanmu dengan kuis pilihan ganda interaktif dari bank soal yang seru dan menantang.</p>
+          <button class="btn btn-secondary" onclick="navigateToTab('kuis')">Mulai Kuis ✏️</button>
+        </div>
+
+        <!-- Card 3: Tugas -->
+        <div class="card menu-card color-orange">
+          <span class="menu-icon">🎯</span>
+          <h3>Tugas Interaktif</h3>
+          <p style="color: var(--text-muted); margin: 10px 0 20px;">Kerjakan tantangan mencocokkan pecahan senilai, isian singkat rasio, dan live check jawaban.</p>
+          <button class="btn btn-accent" onclick="navigateToTab('tugas')">Main Game 🎮</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MATERI SECTION -->
+    <section id="materi" class="page-section">
+      <div class="materi-layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar-menu">
+          <h3 class="sidebar-title">Daftar Materi</h3>
+          <ul class="sidebar-list">
+            <li class="sidebar-item"><button class="active" data-materi="pecahan-biasa">🍕 Pecahan Biasa</button></li>
+            <li class="sidebar-item"><button data-materi="pecahan-campuran">🍰 Pecahan Campuran</button></li>
+            <li class="sidebar-item"><button data-materi="operasi-hitung">➕ Operasi Hitung</button></li>
+            <li class="sidebar-item"><button data-materi="perbandingan">⚖️ Perbandingan</button></li>
+            <li class="sidebar-item"><button data-materi="rasio-skala">🗺️ Rasio & Skala</button></li>
+          </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="materi-content-wrapper">
+          
+          <!-- SUB-MATERI 1: PECAHAN BIASA -->
+          <div id="materi-pecahan-biasa" class="materi-content-section active">
+            <div class="card">
+              <h2>1. Mengenal Pecahan Biasa</h2>
+              <p style="margin-top: 15px;">Pecahan adalah bagian dari satu kesatuan yang utuh. Pecahan biasa ditulis dengan bentuk:</p>
+              
+              <div style="text-align: center; margin: 20px 0; font-size: 1.5rem;">
+                <div class="fraction-number">
+                  <span class="num">a</span>
+                  <span class="den">b</span>
+                </div>
+                <span>di mana <strong>a</strong> adalah <strong>Pembilang</strong> (bagian yang dihitung) dan <strong>b</strong> adalah <strong>Penyebut</strong> (total seluruh bagian).</span>
+              </div>
+
+              <h3>Visualisasi Pecahan:</h3>
+              <p>Bayangkan satu batang cokelat dibagi menjadi 4 bagian sama besar. Jika kamu memakan 3 bagian, maka kamu memakan <strong>3/4</strong> batang cokelat!</p>
+              
+              <div class="visual-container">
+                <div class="fraction-bar">
+                  <div class="fraction-segment filled"></div>
+                  <div class="fraction-segment filled"></div>
+                  <div class="fraction-segment filled"></div>
+                  <div class="fraction-segment"></div>
+                </div>
+                <div style="font-weight: bold; align-self: center; font-size: 1.2rem;">= 3/4 Bagian</div>
+              </div>
+
+              <h3>Pecahan Senilai & Menyederhanakan Pecahan</h3>
+              <p><strong>Pecahan Senilai</strong> adalah pecahan yang memiliki nilai sama meskipun dituliskan dalam angka berbeda. Caranya dengan mengalikan atau membagi pembilang dan penyebut dengan angka yang sama.</p>
+              
+              <div class="example-box">
+                <h4>Contoh Soal 1: Menyederhanakan Pecahan</h4>
+                <p>Sederhanakan pecahan <strong>8/12</strong> menjadi bentuk paling sederhana!</p>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Cari FPB (Faktor Persekutuan Terbesar) dari pembilang (8) dan penyebut (12). FPB-nya adalah <strong>4</strong>.</li>
+                    <li>Bagi pembilang dan penyebut dengan angka FPB tersebut:
+                      <div style="margin: 10px 0;">
+                        (8 ÷ 4) / (12 ÷ 4) = <strong>2/3</strong>
+                      </div>
+                    </li>
+                    <li>Jadi, bentuk paling sederhana dari 8/12 adalah <strong>2/3</strong>.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-MATERI 2: PECAHAN CAMPURAN -->
+          <div id="materi-pecahan-campuran" class="materi-content-section">
+            <div class="card">
+              <h2>2. Pecahan Campuran</h2>
+              <p style="margin-top: 15px;">Pecahan Campuran terdiri atas <strong>bilangan bulat</strong> dan <strong>pecahan biasa</strong>. Pecahan campuran digunakan jika pembilang pecahan biasa lebih besar daripada penyebutnya (a > b).</p>
+              
+              <div style="text-align: center; margin: 25px 0; font-size: 1.8rem; font-family: 'Fredoka'; color: var(--primary-color);">
+                3 <div class="fraction-number" style="font-size: 1.3rem;"><span class="num">1</span><span class="den">2</span></div>
+              </div>
+
+              <h3>A. Mengubah Pecahan Biasa ke Pecahan Campuran</h3>
+              <p>Bagi pembilang dengan penyebut. Hasil bulatnya menjadi angka di depan, sisanya menjadi pembilang baru, dan penyebutnya tetap sama.</p>
+
+              <div class="example-box">
+                <h4>Contoh Soal: Ubah 7/2 menjadi pecahan campuran!</h4>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Lakukan pembagian: 7 ÷ 2 = <strong>3</strong> sisa <strong>1</strong>.</li>
+                    <li>Tulis hasil bulat (3) di depan, sisa (1) di atas sebagai pembilang, dan 2 tetap sebagai penyebut:
+                      <div style="margin: 10px 0; font-size: 1.2rem; font-weight: bold;">
+                        3 1/2
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+
+              <h3>B. Mengubah Pecahan Campuran ke Pecahan Biasa</h3>
+              <p>Kalikan penyebut dengan bilangan bulat di depan, lalu tambahkan pembilangnya. Hasilnya menjadi pembilang baru pecahan biasa, penyebutnya tetap sama.</p>
+
+              <div class="example-box">
+                <h4>Contoh Soal: Ubah 2 3/4 menjadi pecahan biasa!</h4>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Kalikan penyebut dengan bilangan bulat: 4 × 2 = 8.</li>
+                    <li>Tambahkan pembilang: 8 + 3 = 11. Hasilnya 11.</li>
+                    <li>Tulis pecahan biasa dengan penyebut lama: <strong>11/4</strong>.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-MATERI 3: OPERASI HITUNG -->
+          <div id="materi-operasi-hitung" class="materi-content-section">
+            <div class="card">
+              <h2>3. Operasi Hitung Pecahan</h2>
+              <p style="margin-top: 15px;">Ada empat operasi hitung utama pada pecahan:</p>
+
+              <div style="margin: 20px 0;">
+                <h3>1) Penjumlahan & Pengurangan</h3>
+                <p>Untuk menjumlahkan atau mengurangkan pecahan, kita wajib <strong>menyamakan penyebutnya</strong> terlebih dahulu (menggunakan KPK dari penyebut).</p>
+                <div class="example-box" style="background-color: #f1f5f9; border-color: #cbd5e1;">
+                  <strong>Contoh:</strong> 1/4 + 1/2 = 1/4 + 2/4 = <strong>3/4</strong>
+                </div>
+
+                <h3>2) Perkalian Pecahan</h3>
+                <p>Langsung kalikan pembilang dengan pembilang, dan penyebut dengan penyebut. Tidak perlu menyamakan penyebut!</p>
+                <div class="example-box" style="background-color: #f1f5f9; border-color: #cbd5e1;">
+                  <strong>Contoh:</strong> 2/3 × 3/4 = (2×3) / (3×4) = 6/12 = <strong>1/2</strong>
+                </div>
+
+                <h3>3) Pembagian Pecahan</h3>
+                <p>Ubah tanda bagi (÷) menjadi kali (×), lalu balikkan pecahan pembagi (pembilang jadi penyebut, penyebut jadi pembilang).</p>
+                <div class="example-box" style="background-color: #f1f5f9; border-color: #cbd5e1;">
+                  <strong>Contoh:</strong> 3/5 ÷ 2/3 = 3/5 × 3/2 = (3×3) / (5×2) = <strong>9/10</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-MATERI 4: PERBANDINGAN PECAHAN -->
+          <div id="materi-perbandingan" class="materi-content-section">
+            <div class="card">
+              <h2>4. Perbandingan & Urutan Pecahan</h2>
+              <p style="margin-top: 15px;">Bagaimana cara mengetahui pecahan mana yang lebih besar atau lebih kecil?</p>
+
+              <h3>A. Menyamakan Penyebut</h3>
+              <p>Ubah pecahan-pecahan tersebut menjadi pecahan senilai yang memiliki penyebut sama. Setelah sama, bandingkan pembilangnya.</p>
+
+              <div class="example-box">
+                <h4>Contoh Soal: Mana yang lebih besar, 3/4 atau 5/6?</h4>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Cari KPK penyebut 4 dan 6, yaitu <strong>12</strong>.</li>
+                    <li>Ubah 3/4 menjadi pecahan senilai berpenyebut 12: 3/4 = <strong>9/12</strong>.</li>
+                    <li>Ubah 5/6 menjadi pecahan senilai berpenyebut 12: 5/6 = <strong>10/12</strong>.</li>
+                    <li>Bandingkan pembilangnya: Karena 10 > 9, maka 10/12 lebih besar dari 9/12.</li>
+                    <li>Kesimpulan: <strong>5/6 lebih besar dari 3/4</strong> (ditulis 5/6 > 3/4).</li>
+                  </ol>
+                </div>
+              </div>
+
+              <h3>B. Perkalian Silang (Cara Cepat)</h3>
+              <p>Kalikan pembilang pecahan pertama dengan penyebut pecahan kedua, lalu bandingkan dengan hasil perkalian pembilang pecahan kedua dengan penyebut pecahan pertama.</p>
+              <div class="example-box" style="background-color: #e0f2fe; border-color: #7dd3fc;">
+                <strong>Cara Cepat 3/4 vs 5/6:</strong><br>
+                • Sisi kiri: 3 × 6 = 18<br>
+                • Sisi kanan: 5 × 4 = 20<br>
+                Karena 18 < 20, maka 3/4 < 5/6.
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-MATERI 5: RASIO & SKALA -->
+          <div id="materi-rasio-skala" class="materi-content-section">
+            <div class="card">
+              <h2>5. Mengenal Rasio & Skala</h2>
+              
+              <h3 style="margin-top: 15px;">A. Apa itu Rasio?</h3>
+              <p>Rasio adalah perbandingan antara dua nilai atau lebih. Rasio ditulis dengan lambang titik dua (:) atau pecahan biasa.</p>
+              <p><strong>Contoh:</strong> Jika Andi punya 2 apel dan Budi punya 3 apel, maka rasio apel Andi dan Budi adalah <strong>2 : 3</strong>.</p>
+
+              <div class="example-box">
+                <h4>Contoh Soal Rasio Cerita:</h4>
+                <p>Rasio kelereng A : B adalah 2 : 3. Jika total kelereng mereka 15 butir, berapa kelereng milik A?</p>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Jumlah bagian rasio = 2 + 3 = <strong>5 bagian</strong>.</li>
+                    <li>Jumlah bagian ini mewakili 15 kelereng, maka 1 bagian = 15 ÷ 5 = <strong>3 butir</strong> kelereng.</li>
+                    <li>Kelereng A = 2 bagian × 3 = <strong>6 butir</strong>.</li>
+                    <li>Kelereng B = 3 bagian × 3 = <strong>9 butir</strong>.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <h3>B. Apa itu Skala?</h3>
+              <p>Skala menyatakan perbandingan antara jarak pada gambar (peta) dengan jarak sebenarnya.</p>
+              <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-color); margin: 15px 0; font-weight: bold;">
+                Skala = Jarak pada Peta : Jarak Sebenarnya
+              </div>
+
+              <div class="example-box">
+                <h4>Contoh Soal Skala:</h4>
+                <p>Jarak pada peta adalah 4 cm, skala 1 : 100.000. Berapakah jarak sebenarnya?</p>
+                <button class="example-toggle-btn" onclick="toggleExampleSolution(this)">Lihat Cara Penyelesaian 👇</button>
+                <div class="example-solution">
+                  <p><strong>Langkah Penyelesaian:</strong></p>
+                  <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Jarak sebenarnya = Jarak peta × Nilai skala</li>
+                    <li>Jarak sebenarnya = 4 cm × 100.000 = <strong>400.000 cm</strong>.</li>
+                    <li>Ubah cm ke km (dibagi 100.000): 400.000 ÷ 100.000 = <strong>4 km</strong>.</li>
+                    <li>Jadi, jarak sebenarnya adalah <strong>4 km</strong>.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. KUIS SECTION -->
+    <section id="kuis" class="page-section">
+      <!-- SETUP AREA -->
+      <div id="quiz-setup-area" class="quiz-setup">
+        <div class="card">
+          <h2>Uji Kemampuanmu! ⚡</h2>
+          <p style="margin: 15px 0 25px; color: var(--text-muted);">Pilih materi kuis yang ingin kamu mainkan hari ini. Setiap kuis terdiri dari 10 soal acak dari bank soal kita.</p>
+          
+          <div class="setup-grid">
+            <div class="setup-card active" data-category="all">
+              <span style="font-size: 2rem; display: block; margin-bottom: 5px;">🌟</span>
+              <strong>Semua Materi</strong>
+            </div>
+            <div class="setup-card" data-category="senilai">
+              <span style="font-size: 2rem; display: block; margin-bottom: 5px;">🍕</span>
+              <strong>Pecahan Senilai</strong>
+            </div>
+            <div class="setup-card" data-category="campuran">
+              <span style="font-size: 2rem; display: block; margin-bottom: 5px;">🍰</span>
+              <strong>Pecahan Campuran</strong>
+            </div>
+            <div class="setup-card" data-category="operasi">
+              <span style="font-size: 2rem; display: block; margin-bottom: 5px;">➕</span>
+              <strong>Operasi Pecahan</strong>
+            </div>
+            <div class="setup-card" data-category="rasio">
+              <span style="font-size: 2rem; display: block; margin-bottom: 5px;">🗺️</span>
+              <strong>Rasio & Skala</strong>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg" onclick="startQuiz()" style="width: 100%; padding: 15px 0;">Mulai Kuis Sekarang! 🚀</button>
+        </div>
+      </div>
+
+      <!-- PLAY AREA -->
+      <div id="quiz-play-area" style="display: none;">
+        <div class="card">
+          <div class="quiz-header">
+            <span id="quiz-progress-text" style="font-weight: bold; font-size: 1.1rem; color: var(--primary-color);">Soal 1 dari 10</span>
+            <div class="quiz-timer">
+              <span>⏱️ Sisa Waktu:</span>
+              <span id="timer-seconds">30</span> detik
+            </div>
+          </div>
+          <div class="quiz-progress-bar-container">
+            <div id="quiz-progress-bar" class="quiz-progress-bar"></div>
+          </div>
+
+          <!-- Dynamic Question Container -->
+          <div id="quiz-question-container" class="question-box"></div>
+
+          <!-- Footer Area / Next Button -->
+          <div class="quiz-footer">
+            <div></div>
+            <div id="next-btn-container"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT AREA -->
+      <div id="quiz-result-area" class="results-screen" style="display: none;">
+        <div class="card">
+          <span id="quiz-badge" class="results-badge">🏆</span>
+          <h2 class="score-text" id="quiz-score-val">100%</h2>
+          <p class="score-message" id="quiz-message">Hebat sekali! Kamu berhasil menjawab semua soal dengan tepat!</p>
+          
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-num" id="stat-correct" style="color: var(--success-color);">10</div>
+              <div class="stat-label">Benar</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="stat-incorrect" style="color: var(--danger-color);">0</div>
+              <div class="stat-label">Salah</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 30px;">
+            <button class="btn btn-primary" onclick="startQuiz()">Ulangi Kuis 🔄</button>
+            <button class="btn btn-muted" onclick="resetQuizSetupView()">Pilih Materi Lain 📋</button>
+          </div>
+        </div>
+
+        <h3 style="margin: 40px 0 20px; text-align: left; font-family: 'Fredoka';">Pembahasan Detail Soal Kuis:</h3>
+        <div id="quiz-review-details"></div>
+      </div>
+    </section>
+
+    <!-- 4. TUGAS SECTION -->
+    <section id="tugas" class="page-section">
+      <!-- Tabs for Task Sub-sections -->
+      <div style="display: flex; gap: 15px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
+        <button id="task-tab-btn-operasi" class="btn btn-primary" onclick="switchTaskTab('operasi')">➕ Latihan Operasi Bilangan</button>
+        <button id="task-tab-btn-konversi" class="btn btn-muted" onclick="switchTaskTab('konversi')">🍰 Konversi Biasa ↔ Campuran</button>
+      </div>
+
+      <div class="tasks-container">
+        
+        <!-- SUB-TAB 1: LATIHAN OPERASI BILANGAN -->
+        <div id="task-panel-operasi" class="task-box">
+          <div class="task-title-bar">
+            <h3>Latihan Operasi Pecahan (Tanpa Waktu) ➕</h3>
+          </div>
+          <p style="color: var(--text-muted); margin-bottom: 15px;">Pilih tingkat kesulitan untuk memulai latihan. Setiap level terdiri dari 10 soal dengan penjelasan runtut.</p>
+          
+          <!-- Level Selector -->
+          <div class="level-selector-container">
+            <button class="btn-level active" data-level="mudah" onclick="selectExerciseLevel('mudah')">🟢 Mudah</button>
+            <button class="btn-level" data-level="sedang" onclick="selectExerciseLevel('sedang')">🟡 Sedang</button>
+            <button class="btn-level" data-level="sulit" onclick="selectExerciseLevel('sulit')">🔴 Sulit</button>
+          </div>
+
+          <!-- Dynamic Questions List Area -->
+          <div id="exercise-questions-list" class="exercise-list">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div id="exercise-overall-feedback" style="margin-top: 25px; display: none;"></div>
+
+          <div style="display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="checkAllExercises()">Cek Semua Jawaban 🎯</button>
+            <button class="btn btn-muted" onclick="resetActiveExercises()">Ulangi Latihan 🔄</button>
+          </div>
+        </div>
+
+        <!-- SUB-TAB 2: KONVERSI PECAHAN BIASA ↔ CAMPURAN -->
+        <div id="task-panel-konversi" class="task-box" style="display: none;">
+          <div class="task-title-bar">
+            <h3>Tantangan Konversi Pecahan (Biasa ↔ Campuran) 🍰</h3>
+            <button class="btn btn-muted" onclick="loadDynamicConvertExercises()">Ganti / Acak Soal 🔄</button>
+          </div>
+          <p style="color: var(--text-muted); margin-bottom: 20px;">Lengkapi 10 soal konversi berikut. Soal akan berubah otomatis setiap kali kamu mengklik tombol "Ganti Soal" atau "Ulangi Latihan".</p>
+
+          <!-- Dynamic Convert List Area -->
+          <div id="convert-questions-list" class="exercise-list">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div id="convert-overall-feedback" style="margin-top: 25px; display: none;"></div>
+
+          <div style="display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="checkAllConversions()">Cek Semua Jawaban 🎯</button>
+            <button class="btn btn-muted" onclick="loadDynamicConvertExercises()">Ulangi / Ganti Soal 🔄</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer>
+    <p>&copy; 2026 MathFun Matematika Kelas 6. Dibuat secara offline & interaktif dengan penuh ❤️.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
