@@ -1,0 +1,91 @@
+/* =====================================================================
+   COMPONENT STYLES · Komponen Global  (css/components.css)
+   TOC: Kartu (Card) · Tombol (Button) & Varian
+   ===================================================================== */
+
+
+/* ---------- Kartu / Card ---------- */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 3px solid #e2e8f0;
+  transition: var(--transition-normal);
+  padding: 30px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: #cbd5e1;
+}
+
+/* ---------- Tombol Dasar / Button Base ---------- */
+.btn {
+  font-family: 'Fredoka', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+/* ---------- Varian Tombol ---------- */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(75, 107, 251, 0.4);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #ff5270;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(255, 112, 138, 0.4);
+}
+
+.btn-accent {
+  background-color: var(--accent-color);
+  color: #4b3000;
+}
+.btn-accent:hover {
+  background-color: #ffd01a;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(255, 212, 59, 0.4);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+.btn-success:hover {
+  background-color: #2b933f;
+  transform: translateY(-3px);
+}
+
+.btn-muted {
+  background-color: #e2e8f0;
+  color: var(--text-main);
+  box-shadow: none;
+}
+.btn-muted:hover {
+  background-color: #cbd5e1;
+}

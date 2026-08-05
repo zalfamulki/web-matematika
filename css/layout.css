@@ -1,0 +1,110 @@
+/* =====================================================================
+   LAYOUT STYLES · Struktur/Tata Letak  (css/layout.css)
+   TOC: Header & Navbar · Page Sections (SPA Tab) · Footer
+   ===================================================================== */
+
+
+/* ---------- App Header & Navbar ---------- */
+header {
+  background-color: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid #e2e8f0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  font-size: 2.2rem;
+  animation: bounceLogo 2s infinite alternate;
+}
+
+.brand-title {
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.nav-link {
+  font-family: 'Fredoka', sans-serif;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition-normal);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 10px rgba(75, 107, 251, 0.3);
+}
+
+/* ---------- Page Sections (Tab SPA) ---------- */
+.page-section {
+  display: none;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* ---------- App Footer ---------- */
+footer {
+  text-align: center;
+  padding: 30px;
+  background-color: var(--bg-card);
+  border-top: 3px solid #e2e8f0;
+  margin-top: 60px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

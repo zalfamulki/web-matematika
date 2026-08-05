@@ -5,9 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Aplikasi web belajar matematika interaktif untuk kelas 6 SD berfokus pada materi pecahan, pecahan campuran, perbandingan, skala dan rasio.">
   <title>Matematika Seru Kelas 6 - Pecahan, Campuran & Rasio</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- ============ STYLESHEET (dibagi per kategori, folder: css/) ============
+       1. base.css        → font, variabel tema, reset, gaya dasar
+       2. layout.css      → header/navbar, tata letak halaman, footer
+       3. components.css  → kartu (card) & tombol (button)
+       4. home.css        → halaman Beranda (hero & menu)
+       5. materi.css      → halaman Belajar Materi
+       6. quiz.css        → halaman Kuis Seru
+       7. tasks.css       → halaman Tugas Interaktif
+       8. animations.css  → animasi (keyframes) & efek confetti
+       9. responsive.css  → tampilan responsif (media queries)
+       ================================================================ -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/materi.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/tasks.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+
+  <!-- ============ STRUKTUR HALAMAN (daftar isi kategori) ============
+       1. Header & Navigation      → navigasi utama aplikasi
+       2. Section HOME             → halaman Beranda (hero + menu aktivitas)
+       3. Section MATERI           → halaman Belajar Materi
+          · sub-materi: pecahan-biasa, pecahan-campuran, operasi-hitung,
+            perbandingan, rasio-skala
+       4. Section KUIS             → halaman Kuis Seru (setup, play, result)
+       5. Section TUGAS            → halaman Tugas Interaktif (operasi, konversi)
+       6. Footer                   → penutup aplikasi
+       ================================================================ -->
 
   <!-- App Header & Navigation -->
   <header>
@@ -27,10 +58,9 @@
     </div>
   </header>
 
-  <!-- MAIN APPLICATION SECTIONS -->
-  <main>
-    
-    <!-- 1. HOME SECTION -->
+  <!-- ============ MAIN APPLICATION SECTIONS ============ -->
+
+    <!-- ========== KATEGORI 1: HOME (HALAMAN BERANDA) ========== -->
     <section id="home" class="page-section active">
       <div class="card hero">
         <div class="hero-content">
@@ -72,7 +102,7 @@
       </div>
     </section>
 
-    <!-- 2. MATERI SECTION -->
+    <!-- ========== KATEGORI 2: MATERI (HALAMAN BELAJAR) ========== -->
     <section id="materi" class="page-section">
       <div class="materi-layout">
         
@@ -302,7 +332,7 @@
       </div>
     </section>
 
-    <!-- 3. KUIS SECTION -->
+    <!-- ========== KATEGORI 3: KUIS (HALAMAN KUIS SERU) ========== -->
     <section id="kuis" class="page-section">
       <!-- SETUP AREA -->
       <div id="quiz-setup-area" class="quiz-setup">
@@ -391,7 +421,7 @@
       </div>
     </section>
 
-    <!-- 4. TUGAS SECTION -->
+    <!-- ========== KATEGORI 4: TUGAS (HALAMAN TUGAS INTERAKTIF) ========== -->
     <section id="tugas" class="page-section">
       <!-- Tabs for Task Sub-sections -->
       <div style="display: flex; gap: 15px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
@@ -454,11 +484,28 @@
 
   </main>
 
-  <!-- App Footer -->
+  <!-- ========== KATEGORI 5: FOOTER (PENUTUP HALAMAN) ========== -->
   <footer>
     <p>&copy; 2026 MathFun Matematika Kelas 6. Dibuat secara offline & interaktif dengan penuh ❤️.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ============ JAVASCRIPT (dibagi per modul, folder: js/) ============
+       1. js/data/questions.js  → bank soal kuis (50 soal)
+       2. js/data/exercises.js  → soal latihan operasi & konversi
+       3. js/helpers.js         → fungsi bantu umum (renderMathFractions)
+       4. js/quiz.js            → logika kuis pilihan ganda
+       5. js/tasks.js           → logika tugas interaktif
+       6. js/navigation.js      → navigasi tab utama & sidebar materi
+       7. js/main.js            → inisialisasi aplikasi (DOM ready)
+       CATATAN: Urutan muat file PENTING karena file di atas dipakai
+       oleh file di bawahnya (data → helper → modul → init).
+       ================================================================ -->
+  <script src="js/data/questions.js"></script>
+  <script src="js/data/exercises.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

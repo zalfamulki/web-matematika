@@ -1,0 +1,48 @@
+/* =====================================================================
+   RESPONSIVE STYLES · Responsif / Media Queries  (css/responsive.css)
+   TOC: Layar ≤ 900px · Layar ≤ 600px
+   ===================================================================== */
+
+
+/* ---------- Tablet / Layar Sedang (≤ 900px) ---------- */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .materi-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-menu {
+    position: relative;
+    top: 0;
+    margin-bottom: 20px;
+  }
+  .sidebar-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .sidebar-item {
+    flex: 1 1 auto;
+  }
+}
+
+/* ---------- Ponsel / Layar Kecil (≤ 600px) ---------- */
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .nav-menu {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+  .brand-title {
+    font-size: 1.3rem;
+  }
+}
