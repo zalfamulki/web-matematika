@@ -72,9 +72,9 @@ function loadQuestion() {
 
   const questionData = currentQuizQuestions[currentQuestionIndex];
 
-  // Progress Bar
+  // Progress Bar (transform-based for smoothness)
   const progressPercent = ((currentQuestionIndex) / currentQuizQuestions.length) * 100;
-  document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+  document.getElementById('quiz-progress-bar').style.transform = `scaleX(${progressPercent / 100})`;
   document.getElementById('quiz-progress-text').innerText = `Soal ${currentQuestionIndex + 1} dari ${currentQuizQuestions.length}`;
 
   // Timer Setup
@@ -145,7 +145,10 @@ window.selectOption = function(selectedIdx) {
   explanationDiv.className = isCorrect ? 'explanation-box' : 'explanation-box incorrect-explanation';
   explanationDiv.innerHTML = `
     <div class="explanation-title">
-      <span>${isCorrect ? '🎉 Hebat! Jawabanmu Benar!' : '💡 Kurang Tepat, Mari Pelajari!'}</span>
+      ${isCorrect
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2c0 4-2 6-4 8"/><path d="M2 20c4 0 6-2 8-4"/><path d="M5 19L19 5"/><path d="M16 4l4-2-2 4"/><path d="M4 16l-2 4 4-2"/><path d="M13 8l3-3"/><path d="M17 12l-2 2"/><path d="M9 15l-2 2"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1.5 1.4 1.5 2.1h4c0-.7.8-1.6 1.5-2.1A6 6 0 0 0 12 3z"/></svg>'}
+      <span>${isCorrect ? 'Hebat! Jawabanmu Benar!' : 'Kurang Tepat, Mari Pelajari!'}</span>
     </div>
     <p>${questionData.explanation}</p>
   `;
@@ -153,9 +156,12 @@ window.selectOption = function(selectedIdx) {
 
   // Show Next Button
   const isLastQuestion = (currentQuestionIndex === currentQuizQuestions.length - 1);
-  const nextBtnText = isLastQuestion ? 'Lihat Hasil Kuis 🏆' : 'Pertanyaan Berikutnya ➡️';
+  const nextBtnText = isLastQuestion ? 'Lihat Hasil Kuis' : 'Pertanyaan Berikutnya';
+  const nextBtnArrow = isLastQuestion
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
   document.getElementById('next-btn-container').innerHTML = `
-    <button class="btn btn-primary" onclick="goToNextQuestion()">${nextBtnText}</button>
+    <button class="btn btn-primary" onclick="goToNextQuestion()">${nextBtnText}${nextBtnArrow}</button>
   `;
 };
 
@@ -180,16 +186,18 @@ function handleTimeout() {
   explanationDiv.className = 'explanation-box incorrect-explanation';
   explanationDiv.innerHTML = `
     <div class="explanation-title">
-      <span>⏰ Waktu Habis!</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L3 5"/><path d="M19 3l2 2"/><path d="M12 1v2"/></svg>
+      <span>Waktu Habis!</span>
     </div>
     <p>${questionData.explanation}</p>
   `;
   explanationDiv.style.display = 'block';
 
   const isLastQuestion = (currentQuestionIndex === currentQuizQuestions.length - 1);
-  const nextBtnText = isLastQuestion ? 'Lihat Hasil Kuis 🏆' : 'Pertanyaan Berikutnya ➡️';
+  const nextBtnText = isLastQuestion ? 'Lihat Hasil Kuis' : 'Pertanyaan Berikutnya';
+  const nextBtnArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
   document.getElementById('next-btn-container').innerHTML = `
-    <button class="btn btn-primary" onclick="goToNextQuestion()">${nextBtnText}</button>
+    <button class="btn btn-primary" onclick="goToNextQuestion()">${nextBtnText}${nextBtnArrow}</button>
   `;
 }
 
@@ -210,35 +218,50 @@ function showQuizResults() {
   const percentScore = Math.round((score / currentQuizQuestions.length) * 100);
 
   // Custom badges and messages based on score
-  let badge = '⭐';
+  let badge = '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor"><path d="M12 2l3.1 6.3 7 1-5.1 4.9 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.2l7-1z"/></svg>';
   let message = 'Terus berlatih ya, kamu pasti bisa!';
   if (percentScore >= 80) {
-    badge = '👑';
+    badge = '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor"><path d="M2 17l3-8 4 4L12 5l3 8 4-4 3 8z"/><path d="M2 20h20v-1.5H2z"/></svg>';
     message = 'Luar biasa! Kamu adalah Bintang Matematika!';
   } else if (percentScore >= 50) {
-    badge = '🏆';
+    badge = '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/><path d="M7 6H4L6 9"/><path d="M17 6h3l-2 3"/></svg>';
     message = 'Bagus sekali! Sedikit lagi kamu akan jadi juara!';
   }
 
-  document.getElementById('quiz-badge').innerText = badge;
-  document.getElementById('quiz-score-val').innerText = `${percentScore}%`;
+  document.getElementById('quiz-badge').innerHTML = badge;
   document.getElementById('quiz-message').innerText = message;
 
   document.getElementById('stat-correct').innerText = score;
   document.getElementById('stat-incorrect').innerText = currentQuizQuestions.length - score;
 
+  // Animate score counting up
+  animateScoreCount(percentScore);
+
+  // Fire confetti on strong results
+  if (percentScore >= 50 && typeof launchConfetti === 'function') {
+    setTimeout(() => launchConfetti(percentScore), 400);
+  }
+
   // Render Detailed Review Section
   const reviewContainer = document.getElementById('quiz-review-details');
-  reviewContainer.innerHTML = userAnswers.map((ans, idx) => `
-    <div class="card" style="border-left: 8px solid ${ans.isCorrect ? 'var(--success-color)' : 'var(--danger-color)'}">
-      <h4>Soal ${idx + 1}: ${ans.question}</h4>
+  reviewContainer.innerHTML = userAnswers.map((ans, idx) => {
+    const accentDone = ans.isCorrect;
+    return `
+    <div class="card review-card ${accentDone ? 'accent-green' : 'accent-orange'}">
+      <div class="review-head">
+        <span class="review-num">${idx + 1}</span>
+        <h4 style="flex:1">${ans.question}</h4>
+        ${ans.isCorrect
+          ? '<span class="review-status correct-status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg> Benar</span>'
+          : '<span class="review-status wrong-status">Belum tepat</span>'}
+      </div>
       <p style="margin: 8px 0;">
         Jawaban Kamu: <strong>${ans.selected === -1 ? 'Waktu Habis' : currentQuizQuestions[idx].options[ans.selected]}</strong>
-        ${ans.isCorrect ? '✅' : `❌ (Jawaban benar: <strong>${currentQuizQuestions[idx].options[ans.correct]}</strong>)`}
+        ${ans.isCorrect ? '' : `(Jawaban benar: <strong>${currentQuizQuestions[idx].options[ans.correct]}</strong>)`}
       </p>
-      <div style="background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; font-size: 0.95rem; border-left: 3px solid #cbd5e1;">
+      <div class="review-explanation">
         <strong>Pembahasan:</strong> ${ans.explanation}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }

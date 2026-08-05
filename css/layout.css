@@ -1,28 +1,46 @@
 /* =====================================================================
    LAYOUT STYLES · Struktur/Tata Letak  (css/layout.css)
-   TOC: Header & Navbar · Page Sections (SPA Tab) · Footer
+   TOC: Header & Navbar · Mobile Drawer Nav · Page Sections (SPA Tab)
+        · Footer
+   Design: Qreatif-style fixed header, pill nav, navy footer
    ===================================================================== */
-
 
 /* ---------- App Header & Navbar ---------- */
 header {
-  background-color: var(--bg-card);
-  box-shadow: var(--shadow-sm);
-  position: sticky;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-3) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: fixed;
   top: 0;
-  z-index: 100;
-  border-bottom: 3px solid #e2e8f0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 22px rgba(8, 75, 117, 0.28);
+  transition: var(--t-normal), background-color var(--t-normal), box-shadow var(--t-normal);
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.08) 45%, transparent 65%);
+  transform: translateX(-100%);
+  animation: navShine 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+header.scrolled {
+  box-shadow: 0 10px 30px rgba(8, 75, 117, 0.38);
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 15px 20px;
+  padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
 }
 
 .brand {
@@ -30,81 +48,200 @@ header {
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  font-family: 'Mochiy Pop P One', sans-serif;
+  transition: var(--t-fast);
+}
+
+.brand:hover {
+  transform: scale(1.02);
 }
 
 .brand-logo {
-  font-size: 2.2rem;
-  animation: bounceLogo 2s infinite alternate;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
+  border-radius: 14px;
+  color: var(--primary);
+  font-size: 1.4rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: transform var(--t-normal), box-shadow var(--t-normal);
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(-8deg) scale(1.06);
 }
 
 .brand-title {
-  font-size: 1.6rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.35rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  transition: color var(--t-fast);
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 10px;
+  gap: 6px;
+  align-items: center;
 }
 
 .nav-link {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Nunito', sans-serif;
   text-decoration: none;
-  color: var(--text-main);
-  padding: 10px 20px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: var(--transition-normal);
-  border: 2px solid transparent;
+  color: var(--text-on-dark);
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: var(--t-fast);
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+}
+
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--t-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 5px;
+  height: 2px;
+  border-radius: var(--r-pill);
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-normal) var(--ease-bounce);
 }
 
 .nav-link:hover {
-  background-color: #f1f5f9;
-  transform: translateY(-2px);
+  color: var(--gold);
+  background-color: rgba(255, 255, 255, 0.10);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover svg {
+  transform: translateY(-1px) scale(1.12);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-link.active {
-  background-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 4px 10px rgba(75, 107, 251, 0.3);
+  background-color: #ffffff;
+  color: var(--bg-dark);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.nav-link.active::after {
+  display: none;
+}
+
+.nav-link.active:hover {
+  color: var(--bg-dark);
+  background-color: #ffffff;
+  transform: none;
+}
+
+/* Hamburger (mobile) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: var(--t-fast);
+}
+
+.nav-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.nav-toggle svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 /* ---------- Page Sections (Tab SPA) ---------- */
 .page-section {
   display: none;
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
-  animation: slideUp 0.4s ease-out forwards;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 24px 0;
 }
 
 .page-section.active {
   display: block;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ---------- App Footer ---------- */
 footer {
   text-align: center;
-  padding: 30px;
-  background-color: var(--bg-card);
-  border-top: 3px solid #e2e8f0;
-  margin-top: 60px;
-  font-weight: 600;
-  color: var(--text-muted);
+  padding: 64px 24px 40px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  margin-top: 120px;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(28, 160, 255, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+footer p {
+  color: var(--text-on-dark);
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 footer a {
-  color: var(--primary-color);
+  color: var(--accent);
   text-decoration: none;
+  font-weight: 700;
+  transition: var(--t-fast);
 }
 
 footer a:hover {
+  color: var(--gold);
   text-decoration: underline;
 }

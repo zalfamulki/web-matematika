@@ -1,48 +1,184 @@
 /* =====================================================================
    RESPONSIVE STYLES · Responsif / Media Queries  (css/responsive.css)
-   TOC: Layar ≤ 900px · Layar ≤ 600px
+   TOC: Layar ≤ 960px · Layar ≤ 768px (drawer nav) · Layar ≤ 600px
    ===================================================================== */
 
-
-/* ---------- Tablet / Layar Sedang (≤ 900px) ---------- */
+/* ---------- Mixed / mobile nav toggle ---------- */
 @media (max-width: 900px) {
-  .hero {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  #main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 84vw);
+    background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-dark-3) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease-bounce);
+    z-index: 1001;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  #main-nav::before {
+    content: 'Menu';
+    display: block;
+    padding: 26px 24px 8px;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  #main-nav.open {
+    transform: translateX(0);
+  }
+
+  .nav-menu {
     flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 8px 18px 30px;
+  }
+
+  .nav-link {
+    padding: 14px 18px;
+    font-size: 1rem;
+    justify-content: flex-start;
+    border-radius: 16px;
+    color: var(--text-on-dark);
+  }
+
+  .nav-link.active {
+    background-color: #ffffff;
+    color: var(--bg-dark);
+  }
+
+  .nav-link.active:hover {
+    background-color: #ffffff;
+    color: var(--bg-dark);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+/* ---------- Tablet / Layar Sedang (≤ 960px) ---------- */
+@media (max-width: 960px) {
+  .hero {
+    flex-direction: column-reverse;
     text-align: center;
-    padding: 30px 20px;
+    padding: 48px 32px;
+    gap: 32px;
+  }
+  .hero-content {
+    flex: 1;
+  }
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .hero-visual {
+    flex: 1;
+    min-height: 300px;
+    width: 100%;
   }
   .materi-layout {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
   .sidebar-menu {
     position: relative;
     top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
   .sidebar-list {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 8px;
   }
   .sidebar-item {
     flex: 1 1 auto;
   }
+  .sidebar-item button {
+    justify-content: center;
+    padding: 12px;
+  }
+  .page-section {
+    padding-top: 100px;
+  }
 }
 
-/* ---------- Ponsel / Layar Kecil (≤ 600px) ---------- */
-@media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    padding: 10px;
-  }
-  .nav-menu {
-    width: 100%;
-    justify-content: space-around;
-  }
-  .nav-link {
-    padding: 8px 12px;
-    font-size: 0.95rem;
+/* ---------- Ponsel / Layar Kecil (≤ 640px) ---------- */
+@media (max-width: 640px) {
+  header .nav-container {
+    padding: 10px 16px;
   }
   .brand-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+  }
+  .brand-logo {
+    width: 38px;
+    height: 38px;
+  }
+  .page-section {
+    padding: 96px 16px 0;
+  }
+  .card, .task-box {
+    padding: 24px 20px;
+  }
+  .hero {
+    padding: 40px 20px;
+  }
+  .hero-title {
+    font-size: 1.9rem;
+  }
+  .hero-visual {
+    min-height: 260px;
+  }
+  .tile-fraction {
+    width: 130px;
+    height: 130px;
+    right: 10%;
+  }
+  .tile-pizza {
+    width: 100px;
+    height: 100px;
+    left: 2%;
+  }
+  .tile-compare {
+    width: 96px;
+    height: 80px;
+    top: 6%;
+    left: 0;
+    font-size: 1.1rem;
+  }
+  .setup-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stats-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .fraction-input-group {
+    width: 100%;
+    justify-content: center;
+  }
+  .lab-stage {
+    gap: 20px;
+  }
+  .quiz-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

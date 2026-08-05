@@ -1,38 +1,45 @@
 /* =====================================================================
    MATERI STYLES · Halaman Belajar Materi  (css/materi.css)
-   TOC: Layout Materi & Sidebar · Visualisasi Pecahan · Komponen Pecahan
-        · Kotak Contoh Soal (Accordion)
+   TOC: Layout Materi & Sidebar · Fraction Lab (interaktif)
+        · Visualisasi Pecahan · Komponen Pecahan · Kotak Contoh Soal
    ===================================================================== */
-
 
 /* ---------- Layout Materi & Sidebar ---------- */
 .materi-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 30px;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
 }
 
 .sidebar-menu {
   background-color: var(--bg-card);
-  padding: 20px;
-  border-radius: var(--radius-md);
-  border: 3px solid #e2e8f0;
-  height: fit-content;
+  padding: 22px 18px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   position: sticky;
-  top: 100px;
+  top: 96px;
+  z-index: 10;
 }
 
 .sidebar-title {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #e2e8f0;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  padding: 0 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .sidebar-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   list-style: none;
 }
 
@@ -40,28 +47,57 @@
   width: 100%;
   text-align: left;
   background: none;
-  border: none;
-  padding: 12px 15px;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1rem;
-  color: var(--text-main);
-  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  padding: 13px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  border-radius: 14px;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all var(--t-fast);
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+.sidebar-item button .side-icon {
+  font-size: 1.15rem;
+  width: 28px;
+  height: 24px;
+  text-align: center;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-item button .side-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .sidebar-item button:hover {
-  background-color: #f1f5f9;
+  background-color: var(--bg-card-hover);
+  color: var(--primary);
+  transform: translateX(4px);
 }
 
 .sidebar-item button.active {
-  background-color: #e0e8ff;
-  color: var(--primary-color);
-  font-weight: 700;
-  box-shadow: inset 4px 0 0 var(--primary-color);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-color: transparent;
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+
+.materi-content-wrapper {
+  min-width: 0;
 }
 
 .materi-content-section {
@@ -73,40 +109,221 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* ---------- Fraction Lab (interaktif) ---------- */
+.fraction-lab {
+  margin: 28px 0 32px;
+  padding: 28px;
+  background: linear-gradient(160deg, #fff 0%, var(--primary-soft) 100%);
+  border: 1px solid rgba(28, 160, 255, 0.2);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.lab-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.lab-head h4 {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lab-head h4 svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.lab-actions .btn svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lab-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.lab-deny-chips {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.lab-deny-chips .chip-label {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.deny-chip {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  background: #fff;
+  font-family: 'Mochiy Pop P One', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.deny-chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.deny-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.lab-stage {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pie */
+.lab-pie {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(var(--primary) 0% 50%, #e8eefb 50% 100%);
+  border: 8px solid #fff;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: background 0.4s var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.lab-pie::after {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 6px rgba(31, 41, 66, 0.1);
+}
+
+/* Bar */
+.lab-bar {
+  display: flex;
+  width: 100%;
+  max-width: 380px;
+  height: 52px;
+  border: 3px solid var(--text-primary);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background-color: #e8eefb;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lab-bar .fraction-segment {
+  flex: 1;
+  border-right: 2px solid var(--text-primary);
+  background: #e8eefb;
+  transition: background-color 0.2s var(--ease-smooth);
+}
+
+.lab-bar .fraction-segment:last-child {
+  border-right: none;
+}
+
+.lab-bar .fraction-segment.filled {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+
+.lab-bar .fraction-segment:hover:not(.filled) {
+  background: rgba(28, 160, 255, 0.35);
+}
+
+.lab-readout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.lab-value {
+  font-size: 2.4rem;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lab-value .fraction-number { font-size: 2rem; }
+
+.lab-caption {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  max-width: 30ch;
+}
+
 /* ---------- Visualisasi Pecahan ---------- */
 .visual-container {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #f8fafc;
-  border-radius: var(--radius-sm);
-}
-
-.pie-chart {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid #475569;
-  box-shadow: var(--shadow-sm);
+  margin: 32px 0;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--border);
 }
 
 .fraction-bar {
   display: flex;
   width: 100%;
-  max-width: 400px;
-  height: 40px;
-  border: 3px solid #475569;
-  border-radius: 8px;
+  max-width: 440px;
+  height: 48px;
+  border: 3px solid var(--text-primary);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  background-color: #e8eefb;
 }
 
 .fraction-segment {
   flex: 1;
-  border-right: 1px solid #475569;
-  transition: var(--transition-normal);
+  border-right: 2px solid var(--text-primary);
+  transition: background-color var(--t-normal);
 }
 
 .fraction-segment:last-child {
@@ -114,7 +331,7 @@
 }
 
 .fraction-segment.filled {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
 /* ---------- Komponen Pecahan (Angka Bertumpuk) ---------- */
@@ -123,84 +340,128 @@
   flex-direction: column;
   align-items: center;
   vertical-align: middle;
-  margin: 0 5px;
-  font-weight: bold;
+  margin: 0 8px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-family: 'Mochiy Pop P One', sans-serif;
 }
 
 .fraction-number .num {
-  border-bottom: 2px solid var(--text-main);
-  padding: 0 3px;
+  border-bottom: 3px solid var(--text-primary);
+  padding: 0 6px;
+  font-size: 1.25rem;
 }
 
 .fraction-number .den {
-  padding: 0 3px;
+  padding: 3px 6px 0;
+  font-size: 1.25rem;
 }
 
 /* Pecahan Campuran (bulat + pecahan) */
 .mixed-fraction {
   display: inline-flex;
   align-items: center;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.35rem;
-  font-weight: bold;
+  font-family: 'Mochiy Pop P One', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
   vertical-align: middle;
-  color: var(--text-main);
-  margin: 0 4px;
-}
-
-.fraction-number {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: middle;
+  color: var(--text-primary);
   margin: 0 6px;
-  font-weight: bold;
-  line-height: 1.15;
-}
-
-.fraction-number .num {
-  border-bottom: 2px solid var(--text-main);
-  padding: 0 4px;
-  font-size: 1.1rem;
-}
-
-.fraction-number .den {
-  padding: 0 4px;
-  font-size: 1.1rem;
 }
 
 /* ---------- Kotak Contoh Soal (Accordion) ---------- */
 .example-box {
-  background-color: #fff9db;
-  border: 2px solid var(--accent-color);
-  border-radius: var(--radius-sm);
-  padding: 20px;
-  margin: 20px 0;
+  background: linear-gradient(160deg, #fffdf6 0%, #fff7e0 100%);
+  border: 1px solid rgba(255, 166, 0, 0.35);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: var(--shadow-xs);
+  position: relative;
+}
+
+.example-neutral {
+  background: #f4f8ff;
+  border-color: rgba(28, 160, 255, 0.25);
+}
+
+.example-box h4 {
+  font-size: 1.05rem;
+  color: var(--accent-dark);
+  margin-bottom: 10px;
 }
 
 .example-toggle-btn {
-  background-color: var(--accent-color);
-  color: #4b3000;
-  font-family: 'Fredoka', sans-serif;
+  background-color: var(--accent);
+  color: #4a3000;
+  font-family: 'Nunito', sans-serif;
   border: none;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--r-pill);
   cursor: pointer;
-  margin-top: 10px;
-  font-weight: 600;
+  margin-top: 14px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  line-height: 1;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  transition: transform var(--t-fast) var(--ease-bounce), background-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.example-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
+  background-color: var(--accent-dark);
+  color: #fff;
+}
+
+.example-toggle-btn:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: none;
+  background-color: var(--accent);
+}
+
+.example-toggle-btn svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .example-solution {
   display: none;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 2px dashed #ffe3b3;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(255, 166, 0, 0.5);
+  color: var(--text-secondary);
+  line-height: 1.8;
 }
 
 .example-solution.show {
   display: block;
-  animation: slideDown 0.3s ease-out;
+  animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.example-solution ol {
+  padding-left: 20px;
+}
+
+.example-solution li {
+  margin-bottom: 10px;
+}
+
+/* Kotak materi singkat (rasio, skala) */
+.info-box {
+  background: var(--primary-soft);
+  padding: 18px 22px;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(28, 160, 255, 0.2);
+  margin: 20px 0;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-dark);
 }

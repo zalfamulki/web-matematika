@@ -7,14 +7,21 @@
      3. js/helpers.js          (fungsi bantu umum)
      4. js/quiz.js             (logika kuis)
      5. js/tasks.js            (logika tugas)
-     6. js/navigation.js       (navigasi tab & sidebar)
-     7. js/main.js             (INISIALISASI DI SINI)
+6. js/navigation.js       (navigasi tab & sidebar)
+      7. js/interactions.js     (menu mobile, scroll reveal, lab pecahan)
+      8. js/main.js             (INISIALISASI DI SINI)
    ===================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
+  setupMobileNav();
   setupSidebarNavigation();
   initHomeButtons();
   initQuizSetup();
   initInteractiveTasks();
+  initFractionLab();
+  initRevealObserver();
+  addTimerWarning();
+  initRippleEffect();
+  initFallingBackground();
 });

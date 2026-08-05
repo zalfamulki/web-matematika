@@ -63,8 +63,12 @@ function renderExercises() {
   document.getElementById('exercise-overall-feedback').style.display = 'none';
 
   // Tampilkan info level + jumlah soal aktif
-  const levelLabel = { mudah: '🟢 Mudah', sedang: '🟡 Sedang', sulit: '🔴 Sulit' };
-  listArea.innerHTML = `<div class="exercise-session-info">✨ Sesi baru! 7 soal acak dari level <strong>${levelLabel[activeExerciseLevel]}</strong></div>`;
+  const levelLabel = {
+    mudah: '<span class="level-dot" style="--dot:#16c784"></span>Mudah',
+    sedang: '<span class="level-dot" style="--dot:#ff9f43"></span>Sedang',
+    sulit: '<span class="level-dot" style="--dot:#f0455a"></span>Sulit'
+  };
+  listArea.innerHTML = `<div class="exercise-session-info"><svg class="h-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg> Sesi baru! 7 soal acak dari level <strong>${levelLabel[activeExerciseLevel]}</strong></div>`;
 
   listArea.innerHTML += currentExerciseQuestions.map((q, index) => {
     return `
@@ -89,7 +93,7 @@ function renderExercises() {
 
         <!-- Runtut/Detailed Explanation -->
         <div class="explanation-box" id="ex-explanation-${q.id}" style="display: none; margin-top: 15px; background-color: #f8fafc; border-color: #e2e8f0;">
-          <h4 style="font-family: 'Fredoka'; margin-bottom: 8px;">💡 Cara Penyelesaian Runtut:</h4>
+          <h4 style="font-family: 'Mochiy Pop P One', sans-serif; margin-bottom: 8px; display:flex; align-items:center; gap:8px;"><svg class="h-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1.5 1.4 1.5 2.1h4c0-.7.8-1.6 1.5-2.1A6 6 0 0 0 12 3z"/></svg> Cara Penyelesaian Runtut:</h4>
           <p>${renderMathFractions(q.explanation)}</p>
         </div>
       </div>
@@ -128,13 +132,13 @@ window.checkAllExercises = function() {
       itemCard.className = 'exercise-item checked-correct';
       badge.className = 'exercise-feedback-badge';
       badge.style.color = 'var(--success-color)';
-      badge.innerHTML = '✅ Benar!';
+      badge.innerHTML = '<svg class="fb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg> Benar!';
       correctCount++;
     } else {
       itemCard.className = 'exercise-item checked-incorrect';
       badge.className = 'exercise-feedback-badge';
       badge.style.color = 'var(--danger-color)';
-      badge.innerHTML = '❌ Belum Tepat';
+      badge.innerHTML = '<svg class="fb-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Belum Tepat';
     }
 
     // Selalu tampilkan pembahasan runtut setelah dicek
@@ -145,10 +149,10 @@ window.checkAllExercises = function() {
   overallFeedback.style.display = 'block';
   if (correctCount === questions.length) {
     overallFeedback.className = 'explanation-box';
-    overallFeedback.innerHTML = `🎉 <strong>Luar Biasa!</strong> Kamu berhasil menjawab semua ${questions.length} soal di tingkat <strong>${activeExerciseLevel.toUpperCase()}</strong> dengan benar!`;
+    overallFeedback.innerHTML = `<svg class="h-icon" style="vertical-align:-3px" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2c0 4-2 6-4 8"/><path d="M2 20c4 0 6-2 8-4"/><path d="M5 19L19 5"/><path d="M16 4l4-2-2 4"/><path d="M4 16l-2 4 4-2"/><path d="M13 8l3-3"/><path d="M17 12l-2 2"/><path d="M9 15l-2 2"/></svg> <strong>Luar Biasa!</strong> Kamu berhasil menjawab semua ${questions.length} soal di tingkat <strong>${activeExerciseLevel.toUpperCase()}</strong> dengan benar!`;
   } else {
     overallFeedback.className = 'explanation-box incorrect-explanation';
-    overallFeedback.innerHTML = `💡 <strong>Tetap Semangat!</strong> Kamu berhasil menjawab <strong>${correctCount} dari ${questions.length}</strong> soal dengan benar. Pelajari pembahasan di bawah masing-masing soal untuk memahaminya, lalu coba lagi!`;
+    overallFeedback.innerHTML = `<svg class="h-icon" style="vertical-align:-3px" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1.5 1.4 1.5 2.1h4c0-.7.8-1.6 1.5-2.1A6 6 0 0 0 12 3z"/></svg> <strong>Tetap Semangat!</strong> Kamu berhasil menjawab <strong>${correctCount} dari ${questions.length}</strong> soal dengan benar. Pelajari pembahasan di bawah masing-masing soal untuk memahaminya, lalu coba lagi!`;
   }
 };
 
@@ -189,7 +193,7 @@ window.loadDynamicConvertExercises = function() {
 
         <!-- Detailed Explanation -->
         <div class="explanation-box" id="conv-explanation-${index}" style="display: none; margin-top: 15px; background-color: #f8fafc; border-color: #e2e8f0;">
-          <h4 style="font-family: 'Fredoka'; margin-bottom: 8px;">💡 Langkah Penyelesaian:</h4>
+          <h4 style="font-family: 'Mochiy Pop P One', sans-serif; margin-bottom: 8px; display:flex; align-items:center; gap:8px;"><svg class="h-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1.5 1.4 1.5 2.1h4c0-.7.8-1.6 1.5-2.1A6 6 0 0 0 12 3z"/></svg> Langkah Penyelesaian:</h4>
           <p id="conv-explanation-text-${index}"></p>
         </div>
       </div>
@@ -227,13 +231,13 @@ window.checkAllConversions = function() {
       itemCard.className = 'exercise-item checked-correct';
       badge.className = 'exercise-feedback-badge';
       badge.style.color = 'var(--success-color)';
-      badge.innerHTML = '✅ Benar!';
+      badge.innerHTML = '<svg class="fb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg> Benar!';
       correctCount++;
     } else {
       itemCard.className = 'exercise-item checked-incorrect';
       badge.className = 'exercise-feedback-badge';
       badge.style.color = 'var(--danger-color)';
-      badge.innerHTML = '❌ Belum Tepat';
+      badge.innerHTML = '<svg class="fb-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Belum Tepat';
     }
 
     // Hasilkan penjelasan dinamis runtut berdasarkan jenis soal
@@ -283,9 +287,9 @@ window.checkAllConversions = function() {
   overallFeedback.style.display = 'block';
   if (correctCount === 10) {
     overallFeedback.className = 'explanation-box';
-    overallFeedback.innerHTML = `🎉 <strong>Hebat Sekali!</strong> Kamu berhasil menjawab semua 10 soal konversi dengan sempurna!`;
+    overallFeedback.innerHTML = `<svg class="h-icon" style="vertical-align:-3px" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2c0 4-2 6-4 8"/><path d="M2 20c4 0 6-2 8-4"/><path d="M5 19L19 5"/><path d="M16 4l4-2-2 4"/><path d="M4 16l-2 4 4-2"/><path d="M13 8l3-3"/><path d="M17 12l-2 2"/><path d="M9 15l-2 2"/></svg> <strong>Hebat Sekali!</strong> Kamu berhasil menjawab semua 10 soal konversi dengan sempurna!`;
   } else {
     overallFeedback.className = 'explanation-box incorrect-explanation';
-    overallFeedback.innerHTML = `💡 <strong>Bagus!</strong> Kamu berhasil menjawab <strong>${correctCount} dari 10</strong> soal dengan benar. Pelajari langkah-langkah penyelesaian di bawah soal yang masih salah ya!`;
+    overallFeedback.innerHTML = `<svg class="h-icon" style="vertical-align:-3px" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1.5 1.4 1.5 2.1h4c0-.7.8-1.6 1.5-2.1A6 6 0 0 0 12 3z"/></svg> <strong>Bagus!</strong> Kamu berhasil menjawab <strong>${correctCount} dari 10</strong> soal dengan benar. Pelajari langkah-langkah penyelesaian di bawah soal yang masih salah ya!`;
   }
 };

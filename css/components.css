@@ -1,91 +1,233 @@
 /* =====================================================================
    COMPONENT STYLES · Komponen Global  (css/components.css)
-   TOC: Kartu (Card) · Tombol (Button) & Varian
+   TOC: Kartu (Card) · Tombol (Button) & Varian · Icon Chip
+   Design: Qreatif-style rounded cards, pill buttons (blue/orange)
    ===================================================================== */
-
 
 /* ---------- Kartu / Card ---------- */
 .card {
   background-color: var(--bg-card);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  border: 3px solid #e2e8f0;
-  transition: var(--transition-normal);
-  padding: 30px;
-  margin-bottom: 25px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: transform var(--t-normal), box-shadow var(--t-normal), border-color var(--t-normal);
+  padding: 32px;
+  margin-bottom: 24px;
   position: relative;
   overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+  border-color: rgba(28, 160, 255, 0.35);
 }
 
-/* ---------- Tombol Dasar / Button Base ---------- */
-.btn {
-  font-family: 'Fredoka', sans-serif;
+/* Specific Hover Accent Color Cards */
+.card.accent-pink:hover { border-color: rgba(255, 46, 126, 0.35); }
+.card.accent-orange:hover { border-color: rgba(255, 166, 0, 0.4); }
+.card.accent-green:hover { border-color: rgba(22, 199, 132, 0.4); }
+
+/* ---------- Icon Chip (bulatan ikon) ---------- */
+.icon-chip {
+  width: 68px;
+  height: 68px;
+  border-radius: 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 1.9rem;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--t-normal), background var(--t-normal), color var(--t-normal);
+  flex-shrink: 0;
+}
+
+.icon-chip svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .icon-chip {
+  transform: scale(1.08) rotate(-6deg);
+  background: var(--primary);
+  color: white;
+}
+
+.accent-pink .icon-chip { background: #ffe6f0; color: #ff2e7e; }
+.accent-pink:hover .icon-chip { background: #ff2e7e; color: white; }
+.accent-orange .icon-chip { background: var(--accent-soft); color: var(--accent-dark); }
+.accent-orange:hover .icon-chip { background: var(--accent); color: white; }
+
+/* ---------- Tombol Dasar / Button Base ---------- */
+.btn {
+  font-family: 'Nunito', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: var(--r-pill);
   cursor: pointer;
-  transition: var(--transition-normal);
+  transition: transform var(--t-normal) var(--ease-bounce), box-shadow var(--t-fast), background-color var(--t-fast), color var(--t-fast);
   border: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-xs);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Soft glow on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  filter: blur(18px);
+  transform: scale(0.6);
+  transition: opacity var(--t-normal), transform var(--t-normal);
+}
+
+.btn:hover::before {
+  opacity: 0.28;
+  transform: scale(1.1);
+}
+
+/* Shine sweep across the button */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: left 0.55s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  left: 130%;
+}
+
+/* Lift + ripple-scale on press */
+.btn:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active::after {
+  display: none;
+}
+
+/* Icon nudges along on hover */
+.btn svg {
+  transition: transform var(--t-normal) var(--ease-bounce);
+}
+
+.btn:hover svg {
+  transform: translateX(3px) scale(1.12);
+}
+
+.btn[onclick*="Acak"]:hover svg,
+.btn[onclick*="resetFractionLab"]:hover svg,
+.btn[onclick*="resetActiveExercises"]:hover svg,
+.btn[onclick*="loadDynamicConvertExercises"]:hover svg,
+.btn[onclick*="resetQuizSetupView"]:hover svg {
+  transform: rotate(-120deg) scale(1.1);
+}
+
+.btn[onclick*="startQuiz"]:hover svg {
+  transform: translateX(4px) scale(1.15);
+}
+
+/* Focus-within friendly */
+.btn:focus-visible {
+  outline: 3px solid rgba(28, 160, 255, 0.45);
+  outline-offset: 3px;
 }
 
 /* ---------- Varian Tombol ---------- */
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: white;
+  box-shadow: 0 8px 20px rgba(28, 160, 255, 0.3);
 }
 .btn-primary:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 12px rgba(75, 107, 251, 0.4);
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(28, 160, 255, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--secondary-color);
+  background-color: #ff2e7e;
   color: white;
+  box-shadow: 0 8px 20px rgba(255, 46, 126, 0.3);
 }
 .btn-secondary:hover {
-  background-color: #ff5270;
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 12px rgba(255, 112, 138, 0.4);
+  background-color: #e51e6e;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(255, 46, 126, 0.4);
 }
 
 .btn-accent {
-  background-color: var(--accent-color);
-  color: #4b3000;
+  background-color: var(--accent);
+  color: #5c3b00;
+  box-shadow: 0 8px 20px rgba(255, 166, 0, 0.3);
 }
 .btn-accent:hover {
-  background-color: #ffd01a;
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 12px rgba(255, 212, 59, 0.4);
+  background-color: var(--accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(255, 166, 0, 0.4);
+  color: #4a3000;
 }
 
 .btn-success {
-  background-color: var(--success-color);
+  background-color: var(--success);
   color: white;
+  box-shadow: 0 8px 20px rgba(22, 199, 132, 0.3);
 }
 .btn-success:hover {
-  background-color: #2b933f;
+  background-color: #10b273;
   transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(22, 199, 132, 0.4);
 }
 
 .btn-muted {
-  background-color: #e2e8f0;
-  color: var(--text-main);
+  background-color: #eef2f8;
+  color: var(--text-secondary);
   box-shadow: none;
 }
 .btn-muted:hover {
-  background-color: #cbd5e1;
+  background-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+.btn-lg {
+  padding: 18px 38px;
+  font-size: 1.1rem;
+}
+
+/* ---------- Tombol dengan ikon inline ---------- */
+.btn svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

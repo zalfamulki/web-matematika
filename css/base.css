@@ -1,53 +1,150 @@
 /* =====================================================================
    BASE STYLES · DASAR  (Navigasi: css/base.css)
    Berisi: font, variabel tema (design tokens), reset, dan gaya dasar elemen.
+   Visual World: Qreatif-style — sky blue × orange, clean light ground,
+   rounded pill controls, playful Mochiy Pop display face.
    ===================================================================== */
 
-/* ---------- Font & Ikon ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+/* ---------- Font ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap');
 
 /* ---------- Design Tokens / Tema ---------- */
 :root {
-  --primary-color: #4b6bfb;
-  --primary-hover: #3b5bdb;
-  --secondary-color: #ff708a;
-  --accent-color: #ffd43b;
-  --success-color: #37b24d;
-  --danger-color: #f03e3e;
-  --warning-color: #f76707;
-  --bg-primary: #f0f4f9;
-  --bg-card: #ffffff;
-  --text-main: #2b2d42;
-  --text-muted: #6c757d;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 30px;
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Brand — sky blue primary, orange accent (Qreatif / Appland) */
+  --primary:        #1ca0ff;
+  --primary-dark:   #147cc7;
+  --primary-light:  #4db4ff;
+  --primary-soft:   #e7f4ff;
+  --accent:         #ffa600;
+  --accent-dark:    #ff8f00;
+  --accent-soft:    #fff4dd;
+  --gold:           #ffd932;
+  --ink:            #003655;
+
+  /* Semantic */
+  --success:        #16c784;
+  --success-bg:     #e6f9f1;
+  --danger:         #f0455a;
+  --danger-bg:      #fdecef;
+  --warning:        #ff9f43;
+  --warning-bg:     #fff1e0;
+
+  /* Surfaces */
+  --bg-page:        #f6f9ff;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f0f7ff;
+  --bg-dark:        var(--ink);
+  --bg-dark-2:      #084b75;
+  --bg-dark-3:      #0a5c8f;
+
+  /* Text */
+  --text-primary:   #1f2942;
+  --text-secondary: #585a61;
+  --text-muted:     #8a919c;
+  --text-light:     #f1f5f9;
+  --text-on-dark:   rgba(255, 255, 255, 0.85);
+
+  /* Borders */
+  --border:         #e2e9f5;
+  --border-focus:   var(--primary);
+
+  /* Shadows — soft offset shadows (Qreatif depth) */
+  --shadow-xs: 0 1px 2px rgba(31, 41, 66, .06);
+  --shadow-sm: 0 4px 14px rgba(28, 160, 255, .10), 0 2px 4px rgba(31, 41, 66, .05);
+  --shadow-md: 0 12px 26px rgba(28, 160, 255, .14), 0 4px 10px rgba(31, 41, 66, .06);
+  --shadow-lg: 0 22px 44px rgba(28, 160, 255, .16), 0 10px 20px rgba(31, 41, 66, .08);
+  --shadow-xl: 0 34px 68px rgba(28, 160, 255, .22), 0 16px 32px rgba(31, 41, 66, .10);
+
+  /* Radii */
+  --r-sm:  8px;
+  --r-md:  16px;
+  --r-lg:  24px;
+  --r-xl:  28px;
+  --r-pill: 9999px;
+
+  /* Transitions */
+  --ease-bounce: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --t-fast:   0.18s var(--ease-smooth);
+  --t-normal: 0.30s var(--ease-smooth);
+  --t-slow:   0.45s var(--ease-smooth);
+
+  /* Legacy aliases for backward compat */
+  --primary-color:   var(--primary);
+  --primary-hover:   var(--primary-dark);
+  --secondary-color: var(--accent);
+  --accent-color:    var(--gold);
+  --success-color:   var(--success);
+  --danger-color:    var(--danger);
+  --warning-color:   var(--warning);
+  --bg-primary:      var(--bg-page);
+  --text-main:       var(--text-primary);
+  --radius-sm:       var(--r-sm);
+  --radius-md:       var(--r-md);
+  --radius-lg:       var(--r-lg);
+  --shadow-md-old:   var(--shadow-md);
+  --transition-fast:   var(--t-fast);
+  --transition-normal: var(--t-normal);
 }
 
 /* ---------- Reset ---------- */
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: rgba(28, 160, 255, .35); border-radius: var(--r-pill); }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
 /* ---------- Gaya Dasar Elemen ---------- */
+html { scroll-behavior: smooth; }
+
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-main);
-  line-height: 1.6;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.65;
   overflow-x: hidden;
-  padding-bottom: 50px;
+  padding-bottom: 0;
 }
 
-h1, h2, h3, h4, .brand-title {
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 700;
-  color: #1e293b;
+h1, h2, h3, h4 {
+  font-family: 'Mochiy Pop P One', sans-serif;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+p { line-height: 1.7; }
+
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+button { font-family: inherit; }
+
+/* ---------- Selection ---------- */
+::selection {
+  background: rgba(28, 160, 255, 0.18);
+  color: var(--primary-dark);
+}
+
+/* ---------- Focus ring ---------- */
+:focus-visible {
+  outline: 3px solid rgba(28, 160, 255, 0.45);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
