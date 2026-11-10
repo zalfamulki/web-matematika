@@ -1,0 +1,176 @@
+/* ============================================
+   nav.css — navbar SEBARIS dengan header
+   Satu field kaca tipis: pill di tengah baris,
+   menyusut & bergeser bila ruang sempit.
+   Menu: Beranda | Tagihan Air | Setoran | Struktur Pengurus
+   ============================================ */
+
+.app-nav {
+  min-width: 0;
+  padding: 0;
+}
+
+.nav-inner {
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 2px 12px rgba(2, 132, 199, 0.1);
+}
+
+.nav-inner::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: .83rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: var(--teks-lembut);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s ease, background .2s ease, box-shadow .2s ease, transform .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-tab:hover:not(.active) {
+  color: var(--biru);
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.nav-tab:active {
+  transform: scale(.97);
+}
+
+.nav-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.35);
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 60%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.38);
+}
+
+.nav-tab svg {
+  flex-shrink: 0;
+}
+
+/* ---------- View switching ---------- */
+.menu-view {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: muncul .35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---------- Tanda field wajib ---------- */
+.wajib {
+  color: var(--merah);
+  font-weight: 700;
+}
+
+/* ---------- Menu mobile hamburger (khusus HP ≤580px) ---------- */
+.menu-btn,
+.mobile-menu,
+.menu-scrim {
+  display: none;
+}
+
+@media (max-width: 580px) {
+  /* pill disembunyikan, diganti hamburger */
+  .app-nav { display: none; }
+
+  .menu-btn {
+    display: inline-flex;
+    padding: 9px 11px;
+  }
+  .menu-btn .icon-close { display: none; }
+  .menu-btn.open .icon-close { display: block; }
+  .menu-btn.open .icon-open { display: none; }
+
+  /* tombol unduh & badge status jadi ikon saja */
+  #installBtn { padding: 9px 11px; }
+  #installBtn .btn-label { display: none; }
+  #netStatus { font-size: 0; gap: 0; padding: 8px; }
+
+  /* scrim: redupkan halaman di belakang panel (di bawah header) */
+  .menu-scrim:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(15, 23, 42, 0.35);
+    animation: scrimMasuk .2s ease both;
+  }
+
+  /* panel dropdown di bawah header */
+  .mobile-menu:not([hidden]) { display: block; }
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 6px 12px 0;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.97);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(2, 132, 199, 0.18);
+    animation: mmenuMasuk .22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .mmenu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    font-family: var(--font);
+    font-size: .92rem;
+    font-weight: 700;
+    color: var(--teks);
+    cursor: pointer;
+    text-align: left;
+    transition: background .15s ease, color .15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mmenu-item svg { flex-shrink: 0; color: var(--teks-lembut); }
+  .mmenu-item:hover { background: rgba(2, 132, 199, 0.08); }
+  .mmenu-item.active { background: rgba(2, 132, 199, 0.12); color: var(--biru); }
+  .mmenu-item.active svg { color: var(--biru); }
+}
+
+@keyframes mmenuMasuk {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrimMasuk {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

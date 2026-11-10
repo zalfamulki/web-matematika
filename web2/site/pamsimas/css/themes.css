@@ -1,0 +1,51 @@
+/* ============================================
+   themes.css — fallback, gerak, responsif
+   File ini dimuat TERAKHIR agar menimpa file lain.
+   ============================================ */
+
+/* ---------- Fallback: browser tanpa backdrop-filter ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card, .table-wrap, .empty-state { background: #ffffff; }
+  .app-header, .app-footer { background: rgba(255, 255, 255, .96); }
+  .nav-inner { background: rgba(255, 255, 255, .95); }
+  .result-item { background: #f0f9ff; }
+}
+
+/* Mode gelap DIHAPUS seluruhnya (tidak ada tombol toggle) — aplikasi hanya mode terang agar ringan. */
+
+/* ---------- Cetak: matikan dekorasi layar ---------- */
+@media print {
+  body::before, body::after, .bubbles-container, .splash-screen { display: none !important; }
+  .card, .toast { animation: none; }
+}
+
+/* ---------- Kurangi gerak ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ---------- Tablet/HP: nav turun jadi baris kedua full-width ---------- */
+@media (max-width: 1023px) {
+  .header-inner { grid-template-columns: minmax(0, 1fr) auto; }
+  .app-nav { grid-column: 1 / -1; }
+  .nav-inner { width: 100%; max-width: 100%; }
+  .nav-tab { flex: 1 0 auto; }
+}
+
+/* ---------- Responsif (HP / Tablet) ---------- */
+@media (max-width: 580px) {
+  .card { padding: 20px 16px; border-radius: 18px; }
+  .header-inner { padding: 6px 14px; gap: 8px; }
+  .brand-sub { display: none; }
+  .brand-village { font-size: .7rem; }
+  .nav-inner { width: 100%; max-width: 100%; }
+  .nav-tab { flex: 1 0 auto; padding: 8px 14px; font-size: .82rem; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .form-actions .btn { flex: 1; }
+  .card-head { flex-direction: column; align-items: flex-start; }
+  .result-total .result-value { font-size: 1.5rem; }
+  .summary { flex-direction: column; align-items: flex-start; }
+}
