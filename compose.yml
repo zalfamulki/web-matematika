@@ -1,6 +1,6 @@
 services:
   web1:
-    image: web-matematika:latest
+    image: nginx:alpine
     ports:
       - "8081:80"
     container_name: web1-kia-laundry
