@@ -1,0 +1,10 @@
+# Uji build-from-Git via Portainer Agent (Opsi A).
+# Tidak menyentuh container web1 produksi: nama & port dibuat unik.
+# Hapus stack ini setelah ujian selesai.
+services:
+  web1-buildtest:
+    build: .
+    container_name: web1-buildtest
+    ports:
+      - "8083:80"
+    restart: unless-stopped
