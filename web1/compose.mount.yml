@@ -1,0 +1,11 @@
+# Varian tanpa build: konten di-serve dari clone repo di Server 1 (/opt/tugas6).
+# Pakai file ini sebagai Compose path di Portainer jika build dari Git gagal.
+services:
+  web1:
+    image: nginx:alpine
+    container_name: web1
+    ports:
+      - "8081:80"
+    volumes:
+      - /opt/tugas6/web1/site:/usr/share/nginx/html:ro
+    restart: unless-stopped
