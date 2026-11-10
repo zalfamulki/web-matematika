@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web 2 - Kelompok 5</title>
+  <style>
+    :root { color-scheme: light; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+    .card {
+      text-align: center;
+      padding: 3rem 4rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #4ade80;
+      color: #052e16;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.1rem; font-weight: 500; opacity: 0.85; margin-bottom: 2rem; }
+    .meta {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 0.6rem 1.5rem;
+      text-align: left;
+      font-size: 0.95rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+    }
+    .meta dt { opacity: 0.65; }
+    .meta dd { font-weight: 600; }
+    footer { margin-top: 2rem; font-size: 0.8rem; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <span class="badge">Container Aktif</span>
+    <h1>Web 2</h1>
+    <h2>Tugas 6 — Cloud Computing</h2>
+    <dl class="meta">
+      <dt>Kelompok</dt><dd>Kelompok 5</dd>
+      <dt>Container</dt><dd>web2 (nginx:alpine)</dd>
+      <dt>Port</dt><dd>8082 &rarr; 80</dd>
+      <dt>Server</dt><dd>Server 1 (192.168.122.161)</dd>
+    </dl>
+    <footer>Di-deploy melalui Portainer &mdash; endpoint 4</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,7 @@
+services:
+  web1:
+    build: .
+    container_name: web1
+    ports:
+      - "8081:80"
+    restart: unless-stopped

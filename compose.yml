@@ -1,7 +1,0 @@
-services:
-  web1:
-    image: nginx:alpine
-    ports:
-      - "8081:80"
-    container_name: web1-kia-laundry
-    restart: unless-stopped
