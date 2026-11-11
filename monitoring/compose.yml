@@ -17,6 +17,11 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin123}
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:?Wajib isi environment variable GRAFANA_ADMIN_USER saat deploy}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:?Wajib isi environment variable GRAFANA_ADMIN_PASSWORD saat deploy}
+    volumes:
+      - grafana-data:/var/lib/grafana
     restart: unless-stopped
+
+volumes:
+  grafana-data:
